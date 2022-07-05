@@ -32,3 +32,8 @@ interface IMonthProps {
   name: string
   bills: IBill[]
 }
+
+interface IBadge {
+  text: string
+  color?: string
+}

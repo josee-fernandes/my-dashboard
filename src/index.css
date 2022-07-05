@@ -9,3 +9,33 @@ body {
 h3 {
   @apply text-3xl font-bold;
 }
+
+.animate-fade-in {
+  animation: fadeIn 150ms ease forwards;
+}
+
+.animate-fade-in-transform {
+  animation: fadeInTransform 150ms ease forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInTransform {
+  from {
+    transform: scale(0.7);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

@@ -24,27 +24,29 @@ export const Layout: React.FC = () => {
   }, [selectedMonthId])
 
   return (
-    <div className="container mx-auto h-screen grid grid-cols-3 grid-rows-3 gap-10 p-10">
-      <Card
-        title="Entradas" 
-        value={entries}
-        icon="🟩"
-      />
-      <Card
-        title="Saídas"
-        value={expenses}
-        icon="🟥"
-      />
-      <Card
-        title="Saldo"
-        value={balance}
-      />
-      <Months />
+    <>
       {selectedMonthId >= 0 && (
         <Bills
           bills={handleSelectedMonth(selectedMonthId)}
         />
       )}
-    </div>
+      <div className="container mx-auto h-screen grid grid-cols-3 grid-rows-3 gap-10 p-10">
+        <Card
+          title="Entradas" 
+          value={entries}
+          icon="🟩"
+        />
+        <Card
+          title="Saídas"
+          value={expenses}
+          icon="🟥"
+        />
+        <Card
+          title="Saldo"
+          value={balance}
+        />
+        <Months />
+      </div>
+    </>
   )
 }

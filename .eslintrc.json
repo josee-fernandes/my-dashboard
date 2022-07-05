@@ -1,0 +1,139 @@
+{
+  "root": true,
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true,
+    "es6": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "next",
+    "next/core-web-vitals",
+    "plugin:react/recommended",
+    "plugin:react-perf/recommended",
+    "plugin:unicorn/recommended",
+    "prettier/@typescript-eslint",
+    "prettier/react",
+    "prettier/standard",
+    "standard"
+  ],
+  "globals": {
+    "__API_URL__": "readonly",
+    "__APP_NAME__": "readonly",
+    "__IS_DEVELOPMENT__": "readonly",
+    "__IS_PRODUCTION__": "readonly"
+  },
+  "overrides": [
+    {
+      "files": ["**/*.ts", "**/*.tsx"],
+      "parser": "@typescript-eslint/parser",
+      "extends": [
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended"
+      ],
+      "plugins": ["@typescript-eslint"],
+      "rules": {
+        "@typescript-eslint/explicit-module-boundary-types": ["error"],
+        "function-call-argument-newline": ["error", "consistent"]
+      }
+    },
+    {
+      "files": [
+        "webpack.*.js",
+        "babel*",
+        "postcss*",
+        "tailwind.config.js",
+        "next.config.js",
+        "version.ts"
+      ],
+      "env": {
+        "node": true
+      }
+    },
+    {
+      "files": ["**/src/**/*.[jt]s?(x)", "**/?(*.)+(spec|test).[jt]s?(x)"],
+      "env": {
+        "node": true
+      }
+    }
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 12,
+    "sourceType": "module",
+    "project": "./tsconfig.json"
+  },
+  "plugins": ["react", "prettier", "unicorn", "import-helpers", "react-perf"],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "rules": {
+    // "prettier/prettier": "off",
+    "space-before-function-paren": "off",
+    "react/prop-types": "off",
+    // "no-use-before-define": "off",
+    // "indent": "off",
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "function-call-argument-newline": ["error", "consistent"],
+    "unicorn/no-null": ["off", { "checkStrictEquality": true }], // null only allowed for JSON
+    "complexity": ["error", { "max": 20 }], // https://eslint.org/docs/rules/complexity
+    "max-len": ["error", { "code": 120, "tabWidth": 2 }], // https://eslint.org/docs/rules/max-len
+    "max-lines": ["error", 300], // https://eslint.org/docs/rules/max-lines
+    "max-nested-callbacks": ["error", 3], // https://eslint.org/docs/rules/max-nested-callbacks
+    "max-params": ["off", 4], // https://eslint.org/docs/rules/max-params
+    "object-curly-newline": [
+      "off",
+      {
+        "ObjectExpression": "always",
+        "ObjectPattern": { "multiline": true, "minProperties": 6 },
+        "ImportDeclaration": "never",
+        "ExportDeclaration": { "multiline": true, "minProperties": 4 }
+      }
+    ],
+    "unicorn/prevent-abbreviations": [
+      "error",
+      {
+        "allowList": {
+          "getStaticProps": true,
+          "Props": true,
+          "mod": true,
+          "params": true,
+          "playerRef": true,
+          "fireStoreDb": true
+        }
+      }
+    ],
+    "import-helpers/order-imports": [
+      "warn",
+      {
+        "newlinesBetween": "always", // new line between groups
+        "groups": [
+          "module", // node_modules packages
+          "/^@services/", // services files with its packages
+          "/^@contexts/", // contexts files with its packages
+          "/^@hooks/", // need to check this
+          "/^@interfaces/", // interfaces files
+          "/^@/", // files and its packages
+          ["parent", "sibling", "index"], // ordering
+          "/^.svg/", // svg assets
+          "/styles/" // style files
+        ],
+        "alphabetize": { "order": "asc", "ignoreCase": true } // alphabetical ascendent order
+      }
+    ],
+    "unicorn/filename-case": [
+      "off",
+      {
+        "case": "kebabCase",
+        "ignore": ["^FOOBAR\\.js$", "^(B|b)az", "\\.SOMETHING\\.js$"]
+      }
+    ]
+  }
+}

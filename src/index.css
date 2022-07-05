@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-zinc-300 text-zinc-900 w-screen h-screen overflow-x-hidden;
+}
+
+h3 {
+  @apply text-3xl font-bold;
+}
